@@ -102,7 +102,7 @@ int main(int argc, char *argv[])
       Bool pressed = release ? False:True;
       KeyCode keycode;
 
-      if(!ok)
+      if(ok == 0)
       {
         if(ch >= 0x0008 && ch <= 0x000d)
           ch += 0xff00;
@@ -110,10 +110,19 @@ int main(int argc, char *argv[])
       }
       else
       {
+        //KeySym s;
+        //printf("ok is here: %d\n",ok);
+        //if(ok == ok_rshift)
+        //  s = XK_Shift_R;
+        //else
+        //  continue;
         KeySym s;
         s = OK_TO_XK(ok);
         if(!s)
           continue;
+        //if(s == XK_Shift_R)
+        //  puts("shift pressed");
+        //puts("yeah");
         keycode = XKeysymToKeycode(dsp,s);
       }
 

@@ -1,5 +1,6 @@
 
 #include <SDL/SDL.h>
+#include "ok-sdl1.2"
 
 #include "dasnethelp.h"
 
@@ -79,7 +80,7 @@ int main(int argc, char *argv[])
   SDL_Init(SDL_INIT_VIDEO);
   SDL_Surface *window = SDL_SetVideoMode(32,32,0,0);
 
-  bool running;
+  bool running = true;
   while(running)
   {
     SDL_Event event;
@@ -102,6 +103,11 @@ int main(int argc, char *argv[])
           strcpy(str,(char*)OK_TO_STRING(ok));
         else
         {
+          if(ch == 'q')
+          {
+            running = false;
+            break;
+          }
           str[0] = ch;
           str[1] = '\0';
         }
