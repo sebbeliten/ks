@@ -1,0 +1,20 @@
+
+$ cd src/
+
+#windows xp
+$ make -f mingw32-makefile OS_VERSION=-DOS_WINDOWS_XP #ks-client-sdl1.2
+
+#windows
+$ make -f mingw32-makefile #ks-client-sdl1.2
+
+#linux
+$ make -f unix-makefile #ks-client-sdl1.2 ks-server-x11
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,30 @@
+#https://www.gnu.org/software/make/manual/html_node/Quick-Reference.html
+
+#CONSIDER USING AUTOCONF, OR, WRITING ONE SEPARATE MAKEFILE FOR EACH OS
+
+CC=gcc
+#CFLAGS=-lSDL
+#OS_VERSION=-DOS_WINDOWS_XP #uncomment to compile for XP
+
+all: ks-client-sdl1.2
+	
+
+#make k-switch-server-X11
+
+k-switch-client-SDL1.2: ok.o ok-sdl1.2.o dasnethelp.o ks-client-sdl1.2.o
+	$(CC) -o ../$@.exe $^ -lmingw32 -lWs2_32 -lwsock32 -lSDLmain -lSDL 
+
+#k-switch-server-X11: keyother.o dasnethelp.o k-switch-server-X11.o
+#	$(CC) -o $@ $^ -lX11
+
+%.o: %.c
+	$(CC) -c $< ${OS_VERSION}
+
+.PHONY: clean
+
+clean:
+	rm -f *.o ../*.exe
+
+
+#keyother-SDL1.2.o: keyother-SDL1.2.c keyother.o
+#	$(CC) -c $<
