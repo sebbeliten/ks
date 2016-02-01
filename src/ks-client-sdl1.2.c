@@ -103,11 +103,11 @@ int main(int argc, char *argv[])
           strcpy(str,(char*)OK_TO_STRING(ok));
         else
         {
-          if(ch == 'q')
-          {
-            running = false;
-            break;
-          }
+          //if(ch == 'q')
+          //{
+          //  running = false;
+          //  break;
+          //}
           str[0] = ch;
           str[1] = '\0';
         }
