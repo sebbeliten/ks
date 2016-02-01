@@ -1,6 +1,6 @@
 
 #include <SDL/SDL.h>
-#include "ok-sdl1.2"
+#include "ok-sdl1.2.h"
 
 #include "dasnethelp.h"
 
@@ -61,9 +61,9 @@ int main(int argc, char *argv[])
   hints.ai_flags = AI_PASSIVE;
   hints.ai_socktype = SOCK_STREAM;
   
-  { int ERROR;
-    if(ERROR=getaddrinfo(opt_address,opt_port,&hints,&res))
-      perror_getaddrinfo(ERROR);
+  { int return_value;
+    if(return_value=getaddrinfo(opt_address,opt_port,&hints,&res))
+      perror_getaddrinfo(return_value);
   }
 
   int server;
