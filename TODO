@@ -4,3 +4,5 @@ respect MappingNotify event
   or i can create a fake invisible window to which i XTestFakeKeyEvent on in order to receive it
   as an event-- then i use the remap information to obtain the key remapped by xmodmap 
   (MappingNotify) to finally transmit it to the focused window.
+
+SDL_WM_Grab(SDL_GRAB_ON);
