@@ -7,6 +7,8 @@
   { fprintf(stderr,"getaddrinfo: %s\n",gai_strerror(getaddrinfo_return_value)); exit(1); }
 #define perrno(string) \
   { dasnethelps_perror(string); exit(1); }
+#define errxit(string) \
+  { fprintf(stderr,string"\n"); exit(1); }
 
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
@@ -28,7 +30,75 @@ int main(int argc, char *argv[])
     fprintf(stderr,"XOpenDisplay(): was unable to open\n");
     exit(1);
   }
-  int screen = DefaultScreen(dsp);
+  int screen_number = DefaultScreen(dsp);
+
+  /*
+      backend ;; sdl,x11,etc
+
+           -k ;; socket connection
+           -v ;; socket connection
+           -m ;; socket connection
+
+      kvm-client-sdl [-k ADDRESS -K PORT] [-v ADDRESS -V PORT] [-m ADDRESS -M PORT]
+      kvm-client-sdl -kvm ADDRESS
+      
+      k-server-x11 -a ADDRESS -p PORT
+      v-server-x11 -a ADDRESS -p PORT #client
+      m-server-x11 -a ADDRESS -p PORT
+
+      kvm-server-x11 [-k ADDRESS -K PORT] [-v ADDRESS -V PORT] [-m ADDRESS -M PORT]
+      kvm-server-x11 -kvm ADDRESS
+      
+      and, replacing server/client with receiver/sender.
+
+      let's be plain.
+      k-sender ;; sends keyboard to k-receiver
+      v-sender ;; sends    video to v-receiver
+      m-sender ;; sends    mouse to m-receiver
+
+      a kvm-*receiver* -v is a *sender*
+      ignore
+  */
+
+  /*  XXX: sending the pixels of the root window
+           to the client
+  
+      http://cgit.freedesktop.org/xorg/app/xwd/tree/xwd.c
+      $ man XGetImage
+
+      there's a field called “data” in the XImage
+      structure.
+      $ vim +4024 /usr/include/X11/Xlib.h
+
+      all that remains is to copy those pixels
+      and send them to the client but, that involves
+      changing the code to use a non blocking client socket
+      and, creating an fps setting
+  */
+  Window root_window = RootWindow(dsp,screen_number);
+  //XWindowAttributes attr;
+  //if(!XGetWindowAttributes(dsp,root_window,&attr))
+  //  errxit("XGetWindowAttributes(): error");
+
+  //printf("Width: %d\n"
+  //       "Height: %d\n",attr.width,attr.height);
+  //XImage *image = XGetImage(dsp,root_window,
+  //                          attr.x,attr.y,
+  //                          attr.width,attr.height,
+  //                          AllPlanes,XYPixmap);
+
+  /* XXX: warping the pointer using offsets gotten from
+          the client 
+
+          $ man XWarpPointer
+  */
+  //int XWarpPointer(Display *display, Window src_w, Window dest_w,
+  //       int src_x, int src_y, unsigned int src_width, unsigned
+  //       int src_height, int dest_x, int dest_y);
+  //XWarpPointer(dsp,None,None,
+  //             0,0,0,0,
+  //             pointer_offset_x,
+  //             pointer_offset_y);
 
   struct addrinfo hints, *res;
 
