@@ -5,12 +5,15 @@
 CC=gcc
 #CFLAGS=-lSDL
 
-all: ks-client-sdl1.2 ks-server-x11
+all: kv-client-SDL1.2 k-server-Xlib v-server-Xlib
 
-ks-client-sdl1.2: ok.o ok-sdl1.2.o dasnethelp.o ks-client-sdl1.2.o
+kv-client-SDL1.2: ok.o ok-SDL1.2.o dasnethelp.o kv-client-SDL1.2.o
 	$(CC) -o ../$@ $^ -lSDL
 
-ks-server-x11: ok.o ok-x11.o dasnethelp.o ks-server-x11.o
+k-server-Xlib: ok.o ok-Xlib.o dasnethelp.o k-server-Xlib.o
+	$(CC) -o ../$@ $^ -lX11 -lXtst
+
+v-server-Xlib: miscellaneous/msleep.c dasnethelp.o v-server-Xlib.o
 	$(CC) -o ../$@ $^ -lX11 -lXtst
 
 %.o: %.c
@@ -19,4 +22,4 @@ ks-server-x11: ok.o ok-x11.o dasnethelp.o ks-server-x11.o
 .PHONY: clean
 
 clean:
-	rm -f *.o ../ks-client-sdl1.2 ../ks-server-x11
+	rm -f *.o ../kv-client-SDL1.2 ../k-server-Xlib ../v-server-Xlib

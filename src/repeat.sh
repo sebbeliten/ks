@@ -1,3 +1,3 @@
 #!/bin/sh
 
-clear ; make -funix-makefile ks-server-x11 ; ../ks-server-x11
+clear ; make -funix-makefile k-server-Xlib ; ../k-server-Xlib

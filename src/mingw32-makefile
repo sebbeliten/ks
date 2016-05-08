@@ -6,12 +6,12 @@ CC=gcc
 #CFLAGS=-lSDL
 #OS_VERSION=-DOS_WINDOWS_XP #uncomment to compile for XP
 
-all: ks-client-sdl1.2
+all: kv-client-SDL1.2
 	
 
 #make k-switch-server-X11
 
-ks-client-sdl1.2: ok.o ok-sdl1.2.o dasnethelp.o ks-client-sdl1.2.o
+kv-client-SDL1.2: ok.o ok-SDL1.2.o dasnethelp.o kv-client-SDL1.2.o
 	$(CC) -o ../$@.exe $^ -lmingw32 -lWs2_32 -lwsock32 -lSDLmain -lSDL 
 
 #k-switch-server-X11: keyother.o dasnethelp.o k-switch-server-X11.o

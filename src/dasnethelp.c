@@ -86,7 +86,7 @@ int sockaddr_inX_to_presentable(int ai_family, struct sockaddr *addr, char *ipad
   return port;
 }
 
-/* this might be Linux specific */
+/* this is probably specific to Linux and won't work on other unixes */
 #ifndef OS_WINDOWS
 /* return presentable ip address associated with the network interface specified in iface (NULL on error) http://stackoverflow.com/questions/212528/get-the-ip-address-of-the-machine */
 char *getifaceaddr(char *iface)

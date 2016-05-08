@@ -1,8 +1,17 @@
-respect MappingNotify event
-  i can't respect any MappingNotify event because i don't receive any input,
-  thus i must grab a mapping of the keyboard and manually ensure the correct press.
-  or i can create a fake invisible window to which i XTestFakeKeyEvent on in order to receive it
-  as an event-- then i use the remap information to obtain the key remapped by xmodmap 
-  (MappingNotify) to finally transmit it to the focused window.
+------------------------------------------------------------------------------------------
+Nothing to do with the program, but Using the native keyboard, for instance in stumpwm's \
+inputbar it won't catch xmodmap's remap, however... it will catch the input \
+yielded by k-server-Xlib which is probably due to it using XTest
+----------------------------------------------------------------
 
-SDL_WM_Grab(SDL_GRAB_ON);
+[NO](Sun Apr 24 17:30:15 CEST 2016) kvm-client-SDL1.2 ;; SDL_WM_Grab(SDL_GRAB_ON);
+[NO](Sun Apr 24 17:30:15 CEST 2016) m-server-Xlib
+[NO](Sun Apr 24 17:30:15 CEST 2016) k-server-Xlib kxx-client-SDL1.2 ;; international keyboard support ;; unicode
+
+--------------------------------
+vt linux console
+  http://expect.sourceforge.net/
+  $ man expect
+  /dev/input/XXX
+----------------
+

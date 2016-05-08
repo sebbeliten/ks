@@ -1,0 +1,40 @@
+
+      the program's purpose is to remotely access another computer
+      through keyboard, video, and/or mouse, depending on the specific backend,
+      implementation will be different, however each implementation is required
+      to use one socket connection per device, because a random platform might not 
+      support all of them, and some people will not want to use all of them.
+
+      the trickiest part is implementing servers, because simulating devices
+      is not something i've seen cross-platform libraries do, and so implementing
+      them one must first delve into platform-specifics / APIs
+
+      -
+
+
+      server listen for incoming connection
+      client initiate connection
+
+      backend ;; SDL1.2,Xlib,etc
+
+           -k ;; socket connection keyboard
+           -v ;; socket connection video
+           -m ;; socket connection mouse
+
+           -K ;; port keyboard
+           -V ;; port video
+           -M ;; port mouse
+
+           -a ;; socket connection
+           -p ;; port
+
+      kvm-client-SDL1.2 [-k ADDRESS -K PORT] [-v ADDRESS -V PORT] [-m ADDRESS -M PORT]
+      kvm-client-SDL1.2 -a ADDRESS
+      
+      k-server-Xlib [-p PORT]
+      v-server-Xlib [-p PORT]
+      m-server-Xlib [-p PORT]
+
+      kvm-server-Xlib [-K PORT] [-V PORT] [-M PORT]
+      kvm-server-Xlib [-K PORT] [-V PORT] [-M PORT]
+
